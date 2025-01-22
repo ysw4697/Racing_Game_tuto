@@ -1,0 +1,4 @@
+repository "241202_Tutorial Project/Racing_Game@14568658116380@cloud"
+  path "/"
+    br "/main"
+    co "/main"
