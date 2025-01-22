@@ -10,18 +10,31 @@ public class GameManager : MonoBehaviour
     public int Gas;
     public bool isGameOver;
 
+    public GameObject endingUI;
+
     private void Start()
     {
         Gas = 100;
         isGameOver = false;
-        gasCountText = GameObject.Find("[Text ] GasCountText").GetComponent<TMP_Text>();
+        
+        if (gasCountText != null)
+        {
+            gasCountText = GameObject.Find("[Text ] GasCountText").GetComponent<TMP_Text>();
+        }
+        else
+        {
+            gasCountText = null;
+        }
         
         StartCoroutine(ConsumGas());
     }
 
     private void Update()
     {
-        GasText();
+        if (gasCountText != null)
+        {
+            GasText();
+        }
         
         if (!isGameOver && Gas <= 0)
         {
@@ -47,6 +60,7 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         isGameOver = true;
+        endingUI.SetActive(true);
         Debug.Log("Game Over");
     }
 
